@@ -11,7 +11,6 @@ const {
 } = require("@metaplex-foundation/umi");
 const userManager = require("./userManager");
 
-// Configure NFT Metadata
 const NFT_CONFIG = {
   name: "Web3 Onboarder",
   symbol: "ONBD",
@@ -32,23 +31,18 @@ Keep earning more achievements! 🚀`;
   }
 
   try {
-    // Create UMI instance with connection
     const umi = createUmi("http://127.0.0.1:8899");
     umi.use(mplTokenMetadata());
 
-    // Convert Solana keypair to UMI format
     const umiKeypair = umi.eddsa.createKeypairFromSecretKey(
       Uint8Array.from(user.keypair.secretKey)
     );
 
-    // Create and set signer identity - THIS IS THE CRITICAL FIX
     const signer = createSignerFromKeypair(umi, umiKeypair);
     umi.use(signerIdentity(signer));
 
-    // Generate mint signer
     const mint = generateSigner(umi);
 
-    // Create NFT with proper configuration
     const result = await createNft(umi, {
       mint,
       name: NFT_CONFIG.name,
@@ -64,11 +58,9 @@ Keep earning more achievements! 🚀`;
       ],
     }).sendAndConfirm(umi);
 
-    // Update user data
     user.nftMinted = true;
     user.nftMintAddress = mint.publicKey.toString();
 
-    // Award achievement
     if (!user.achievements.includes("FIRST_NFT")) {
       await userManager.awardAchievement(from, "FIRST_NFT");
     }
@@ -87,7 +79,6 @@ https://explorer.solana.com/address/${mint.publicKey.toString()}?cluster=custom
   } catch (error) {
     console.error("NFT minting error:", error);
 
-    // Better error handling with specific solutions
     if (error.message.includes("NullSigner")) {
       return `❌ NFT minting failed: Signer configuration error
       
