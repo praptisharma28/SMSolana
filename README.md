@@ -101,4 +101,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Made with ❤️ for global Web3 adoption by (Prapti)[https://github.com/praptisharma28]** 🌍📱⛓️
+**Made with ❤️ for global Web3 adoption by [Prapti](https://github.com/praptisharma28)** 🌍📱⛓️
