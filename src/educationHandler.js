@@ -1,6 +1,5 @@
 const userManager = require("./userManager");
 
-// Educational content database
 const EDUCATIONAL_CONTENT = {
   "WHAT IS SOL?": {
     title: "🌟 What is SOL?",
@@ -107,7 +106,6 @@ async function handleEducationalContent(from, topic) {
 
   const content = EDUCATIONAL_CONTENT[topicKey];
 
-  // Track engagement (optional)
   if (user) {
     if (!user.educationViewed) user.educationViewed = [];
     if (!user.educationViewed.includes(topicKey)) {
@@ -122,7 +120,6 @@ function getWalletRecommendations() {
   return `${WALLET_RECOMMENDATIONS.title}\n\n${WALLET_RECOMMENDATIONS.content}`;
 }
 
-// Additional educational functions
 function getWeb3Glossary() {
   return `📚 Web3 Glossary - Essential Terms:
 
