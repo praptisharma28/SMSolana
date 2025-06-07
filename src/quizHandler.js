@@ -1,10 +1,8 @@
 const userManager = require("./userManager");
 const { Connection, LAMPORTS_PER_SOL } = require("@solana/web3.js");
 
-// Solana connection (localnet)
 const connection = new Connection("http://127.0.0.1:8899", "confirmed");
 
-// Quiz database with questions and rewards
 const QUIZZES = {
   "WHAT IS DEFI?": {
     id: "defi",
@@ -82,13 +80,11 @@ async function handleQuizQuestion(from, body) {
     return "❌ Quiz not found. Type 'QUIZ' to see available quizzes.";
   }
 
-  // Check if already completed
   const completedQuizzes = user.quizCompleted || [];
   if (completedQuizzes.includes(quiz.id)) {
     return `✅ You've already completed this quiz!\n\n🏆 Previous reward: ${quiz.reward} SOL earned\n\n📚 Try other quizzes with 'QUIZ' command.`;
   }
 
-  // Set current quiz
   user.currentQuiz = quiz.id;
 
   return `${quiz.question}\n\n💡 Reply with A, B, C, or D to answer!`;
@@ -100,7 +96,6 @@ async function handleQuizAnswer(from, answer) {
     return "❌ No active quiz. Start a quiz first!";
   }
 
-  // Find the current quiz
   const currentQuiz = Object.values(QUIZZES).find(
     (q) => q.id === user.currentQuiz
   );
@@ -112,19 +107,14 @@ async function handleQuizAnswer(from, answer) {
   const isCorrect = answer === currentQuiz.correctAnswer;
 
   if (isCorrect) {
-    // Award reward
     try {
-      // Add to completed quizzes
       if (!user.quizCompleted) user.quizCompleted = [];
       user.quizCompleted.push(currentQuiz.id);
 
-      // Update total earned
       user.totalEarned = (user.totalEarned || 0) + currentQuiz.reward;
 
-      // Simulate SOL transfer (in production, you'd actually transfer)
       await simulateSOLReward(user.address, currentQuiz.reward);
 
-      // Award quiz achievement
       if (
         user.quizCompleted.length >= 3 &&
         !user.achievements.includes("QUIZ_MASTER")
@@ -164,11 +154,8 @@ async function handleQuizAnswer(from, answer) {
 }
 
 async function simulateSOLReward(address, amount) {
-  // In production, this would transfer actual SOL
-  // For demo purposes, we'll just log it
   console.log(`💰 Quiz reward: ${amount} SOL sent to ${address}`);
 
-  // Simulate airdrop for demo (you might want to remove this in production)
   try {
     const { PublicKey } = require("@solana/web3.js");
     const publicKey = new PublicKey(address);
