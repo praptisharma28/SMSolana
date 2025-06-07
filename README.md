@@ -4,9 +4,19 @@
 ## What is SMSolana?
 SMSolana is an SMS/WhatsApp bot that onboards non-crypto users to Web3 through text messages. Users can create Solana wallets, earn SOL rewards, mint NFTs, and learn about Web3 - all through familiar messaging apps.
 
+<p align="center">
+  <img 
+    src="https://github.com/user-attachments/assets/bef6a046-dc92-41b2-98df-3ebf7ebbd52b"
+    width="700"
+    style="border: 5px solid #00ffe1; border-radius: 12px; box-shadow: 0 0 15px #00ffe1;" 
+    alt="Screenshot 2025-06-08 at 2 49 26 AM"
+  />
+</p>
+
 **Perfect for emerging markets and non-tech users** 🌍
 
 ## Key Features
+
 - **Text-to-Earn**: Complete quizzes and earn SOL rewards
 - **Wallet Creation**: Generate Solana wallets via SMS
 - **Interactive Learning**: Web3 education with instant rewards
