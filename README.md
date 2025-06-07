@@ -27,7 +27,7 @@ SMSolana is an SMS/WhatsApp bot that onboards non-crypto users to Web3 through t
 
 ```bash
 # 1. Clone and install
-git clone https://github.com/yourusername/SMSolana.git
+git clone https://github.com/praptisharma28/SMSolana.git
 cd SMSolana && npm install
 
 # 2. Terminal 1: Start Solana validator
