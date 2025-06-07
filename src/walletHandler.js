@@ -6,7 +6,6 @@ const {
 } = require("@solana/web3.js");
 const userManager = require("./userManager");
 
-// Solana connection (localnet)
 const connection = new Connection("http://127.0.0.1:8899", "confirmed");
 
 async function handleWalletCreation(from) {
@@ -25,14 +24,12 @@ Reply "MY PROGRESS" to see your journey!`;
     const keypair = Keypair.generate();
     const address = keypair.publicKey.toBase58();
 
-    // Airdrop SOL
     const airdropSig = await connection.requestAirdrop(
       keypair.publicKey,
       0.1 * LAMPORTS_PER_SOL
     );
     await connection.confirmTransaction(airdropSig, "confirmed");
 
-    // Initialize user data
     const userData = {
       keypair,
       address,
