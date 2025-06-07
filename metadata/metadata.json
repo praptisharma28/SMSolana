@@ -1,0 +1,22 @@
+{
+  "name": "Solana Onboarder",
+  "symbol": "ONBD",
+  "description": "Welcome to Web3! Earned by completing Solana onboarding tasks via SMS/WhatsApp.",
+  "image": "https://gateway.pinata.cloud/ipfs/bafkreicascom7ru7wcgj42xnuikhvaujchseztap7vngapchid7bxk35aa",
+  "animation_url": "",
+  "external_url": "https://solana.com",
+  "attributes": [
+    {
+      "trait_type": "Onboarding Step",
+      "value": "Wallet Creation"
+    },
+    {
+      "trait_type": "Platform",
+      "value": "SMS/WhatsApp"
+    },
+    {
+      "trait_type": "Achievement",
+      "value": "Web3 Newbie"
+    }
+  ]
+}
