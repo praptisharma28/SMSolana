@@ -1,7 +1,5 @@
-// In-memory user storage
 const users = {};
 
-// Achievement system
 const achievements = {
   WALLET_CREATED: { name: "Wallet Creator", reward: 0.05 },
   FIRST_NFT: { name: "NFT Collector", reward: 0.03 },
@@ -64,7 +62,6 @@ Example: REFER +1234567890`;
   const referredPhone = parts[1];
   user.referrals = (user.referrals || 0) + 1;
 
-  // Award referral bonus
   if (user.referrals >= 5 && !user.achievements.includes("REFERRAL_MASTER")) {
     await awardAchievement(from, "REFERRAL_MASTER");
   }
