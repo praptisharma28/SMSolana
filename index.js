@@ -4,20 +4,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const twilio = require("twilio");
 
-// Import modular handlers
 const messageHandler = require("./src/messageHandler");
 const { sendMessage } = require("./src/messageHandler");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Initialize Twilio
 const client = twilio(
   process.env.TWILIO_ACCOUNT_SID,
   process.env.TWILIO_AUTH_TOKEN
 );
 
-// Webhook endpoints
 app.post("/sms", async (req, res) => {
   try {
     const response = await messageHandler.handleMessage(
@@ -46,7 +43,6 @@ app.post("/whatsapp", async (req, res) => {
   }
 });
 
-// Health check endpoint
 app.get("/health", (req, res) => {
   const userManager = require("./src/userManager");
   res.json({
