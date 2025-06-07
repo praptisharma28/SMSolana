@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  smsbot:
+    build: .
+    container_name: smsolana-bot
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - TWILIO_PHONE_NUMBER=${TWILIO_PHONE_NUMBER}
+      - TWILIO_WHATSAPP_NUMBER=${TWILIO_WHATSAPP_NUMBER}
+      - SOLANA_RPC_URL=${SOLANA_RPC_URL:-http://solana-validator:8899}
+      - PORT=3000
+    depends_on:
+      - solana-validator
+    restart: unless-stopped
+    networks:
+      - smsbot-network
+
+  solana-validator:
+    image: solanalabs/solana:stable
+    container_name: solana-test-validator
+    ports:
+      - "8899:8899"
+      - "8900:8900"
+      - "9900:9900"
+    command: >
+      sh -c "solana-test-validator 
+             --bind-address 0.0.0.0 
+             --rpc-bind-address 0.0.0.0 
+             --log 
+             --reset"
+    restart: unless-stopped
+    networks:
+      - smsbot-network
+    volumes:
+      - solana-data:/root/.config/solana
+
+  # not in uuse currently
+  redis:
+    image: redis:7-alpine
+    container_name: smsbot-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    networks:
+      - smsbot-network
+    profiles:
+      - production
+
+networks:
+  smsbot-network:
+    driver: bridge
+
+volumes:
+  solana-data:
+  
