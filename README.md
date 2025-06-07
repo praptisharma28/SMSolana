@@ -16,7 +16,6 @@ SMSolana is an SMS/WhatsApp bot that onboards non-crypto users to Web3 through t
 **Perfect for emerging markets and non-tech users** 🌍
 
 ## Key Features
-
 - **Text-to-Earn**: Complete quizzes and earn SOL rewards
 - **Wallet Creation**: Generate Solana wallets via SMS
 - **Interactive Learning**: Web3 education with instant rewards
@@ -25,12 +24,26 @@ SMSolana is an SMS/WhatsApp bot that onboards non-crypto users to Web3 through t
 
 ## Quick Start
 
-### Prerequisites
-- Node.js 16+
-- Twilio account
-- Solana CLI tools
+### Option 1: Docker (Recommended) 🐳
+```bash
+# 1. Clone repository
+git clone https://github.com/praptisharma28/SMSolana.git
+cd SMSolana
 
-### Setup (3 terminals needed)
+# 2. Set up environment
+cp .env.docker .env
+# Edit .env with your Twilio credentials
+
+# 3. Start everything with Docker
+docker-compose up -d
+
+# 4. Create ngrok tunnel (new terminal)
+ngrok http 3000
+```
+
+### Option 2: Manual Setup
+**Prerequisites:** Node.js 16+, Twilio account, Solana CLI
+
 ```bash
 # 1. Clone and install
 git clone https://github.com/praptisharma28/SMSolana.git
@@ -75,11 +88,28 @@ Bot: 🎉 Achievement NFT minted!
 
 ## Environment Setup
 ```env
+# .env file
 TWILIO_ACCOUNT_SID=your_account_sid
 TWILIO_AUTH_TOKEN=your_auth_token
 TWILIO_PHONE_NUMBER=+1234567890
-SOLANA_RPC_URL=http://127.0.0.1:8899
+TWILIO_WHATSAPP_NUMBER=+1234567890
+SOLANA_RPC_URL=http://127.0.0.1:8899  # or http://solana-validator:8899 for Docker
 PORT=3000
+```
+
+## Docker Commands
+```bash
+# Start services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f smsbot
+
+# Stop services
+docker-compose down
+
+# Rebuild after code changes
+docker-compose up --build
 ```
 
 ## Architecture
@@ -88,6 +118,13 @@ SMS/WhatsApp → Twilio → Express.js Bot → Solana Blockchain
                            ↓
                     User Data + Metaplex NFTs
 ```
+
+## Contributing
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
 ## License
 MIT License - see [LICENSE](LICENSE) file for details.
