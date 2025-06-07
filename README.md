@@ -97,34 +97,12 @@ SOLANA_RPC_URL=http://127.0.0.1:8899  # or http://solana-validator:8899 for Dock
 PORT=3000
 ```
 
-## Docker Commands
-```bash
-# Start services
-docker-compose up -d
-
-# View logs
-docker-compose logs -f smsbot
-
-# Stop services
-docker-compose down
-
-# Rebuild after code changes
-docker-compose up --build
-```
-
 ## Architecture
 ```
 SMS/WhatsApp → Twilio → Express.js Bot → Solana Blockchain
                            ↓
                     User Data + Metaplex NFTs
 ```
-
-## Contributing
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
 
 ## License
 MIT License - see [LICENSE](LICENSE) file for details.
