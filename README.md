@@ -1,4 +1,13 @@
 # SMSolana - SMS-Based Web3 Onboarding
+<p align="center">
+  <img 
+    src="https://github.com/user-attachments/assets/6f500b5c-b8bf-46d0-972a-7388841375ce"
+    width="300"
+    style="border: 5px solid #00ffe1; border-radius: 12px; box-shadow: 0 0 15px #00ffe1;" 
+    alt="Screenshot 2025-06-08 at 2 49 26 AM"
+  />
+</p>
+
 > Bringing Web3 to the masses through SMS/WhatsApp - No apps, no complexity, just text and earn!
 
 ## What is SMSolana?
